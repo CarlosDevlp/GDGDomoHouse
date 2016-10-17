@@ -1,0 +1,27 @@
+{
+  "name": "gdgdomohouse",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Carlos Chavez Laguna"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "domo"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.8",
+    "angular-material": "~1.1.1"
+  }
+}
