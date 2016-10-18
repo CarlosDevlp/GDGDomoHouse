@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DomoHouse</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:ng-hide="preloader.hidden"css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" type="text/css" href="angular-material/angular-material.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="DomoHouse" ng-controller="MainCtrl">    
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+  <!-- preloader -->
+  <div class="preloader" ng-hide="preloader.hidden">
+  </div>
+  <!-- toolbar -->
+  <div class="main" ng-class="{show:preloader.hidden}" layout="column" 
+       flex layout-fill ng-cloak>    
+      <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Settings"
+            ng-click="optionsSideNav.toggle()">
+            <md-icon md-svg-icon="images/menu.svg"></md-icon>
+          </md-button>
+
+          <h2>
+            <span>GDG Domo-House</span>
+          </h2>       
+
+        </div>
+      </md-toolbar>
+    
+
+    <!--contenido-->    
+      <md-content flex layout-padding>        
+            
+              <md-content class="md-padding card-container" >
+
+                  <!--<md-subheader class="md-primary">Hay {{ toDoList.tasks.length }} tareas para realizar</md-subheader>-->
+                  <md-card ng-repeat="device in devices track by $index" class="card-device">
+
+                      <md-card-content>
+                        <!--<h2 class="md-title">{{task.name}}</h2>-->
+  	                      <img src="{{device.img}}" />
+
+                      </md-card-content>
+                     	
+                     	<md-card-title>
+        			          <md-card-title-text>
+        			            <span class="md-headline" md-colors="{color:'primary'}">{{device.name}}</span>
+        			            <!-- <span class="md-subhead">Large</span> -->
+        			          </md-card-title-text>			          
+      			          </md-card-title>
+
+                      <md-card-actions layout="row" layout-align="end center">
+        			           <md-button class="md-primary">Encender</md-button>
+        			        </md-card-actions>
+                   
+                  </md-card>
+
+              </md-content>
+           
+           
+      </md-content>    
+  </div>
+
+
+
+
+  <div class="resources" ng-class="{show:preloader.hidden}">
+      <!-- FAB button -->
+     <md-button class="add-task md-fab md-fab-bottom-right right" aria-label="Add task"
+      ng-click="taskMaker()"
+     >
+          +        
+    </md-button>
+
+    <!-- side nav -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2"     
+                 md-component-id="options" md-swipe-left="optionsSideNav.close()">
+        <md-toolbar class="md-theme-light">
+          <h1 class="md-toolbar-tools">Opciones</h1>
+        </md-toolbar>
+        <md-content  layout-padding>
+          <h2 class="md-title">Para todas las tareas:</h2>
+          <md-button class="md-primary md-raised btn-accept" ng-click="optionsSideNav.selectAll()">
+               Seleccionar todas
+          </md-button>
+          <md-button class="md-primary md-raised btn-accept" ng-click="optionsSideNav.deselectAll()">
+               Deseleccionar todas
+          </md-button>        
+
+          <h2 class="md-title">Para las tareas seleccionadas:</h2>
+          <md-button class="md-primary md-raised btn-accept"
+            ng-click="optionsSideNav.deleteSelectedTasks()">
+               Eliminar tareas hechas
+          </md-button>
+        </md-content>
+    </md-sidenav>
+  </div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="angular/angular.js"></script>
+    <script src="angular-animate/angular-animate.js"></script>
+    <script src="angular-aria/angular-aria.js"></script>
+    <script src="angular-touch/angular-touch.js"></script>
+    <script src="angular-material/angular-material.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>        
+        <script src="scripts/controllers/taskmaker.js"></script>
+        <script src="scripts/controllers/taskeditor.js"></script>
+
+        <!-- endbuild -->
+</body>
+</html>
