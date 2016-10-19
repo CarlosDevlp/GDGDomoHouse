@@ -43,13 +43,24 @@ app.get("/",function(req,res){
 		    message:"ok"
 		 });
 		 res.end(json);
-		/*if(boardReady){
-			if(toggle)
-				led.write(0x01);
-			else
-				led.write(0x00);
-			toggle=!toggle;
-		}*/
+
+
+		 //mandar al arduino
+		if(boardReady){
+
+			try{
+				var pos=Number(req.param("id"));
+				//mandar apagado o encendido
+				if(req.query.state=="on")
+					relay[pos].write(0x01);				
+				else
+					relay[pos].write(0x00);
+			}catch(err){
+				console.log(err);
+			}			
+		}
+
+		
 
 	});
 
@@ -64,15 +75,22 @@ var boardReady=false;
 var toggle;
 var relay=[
 			{
+			led:null,
 			pin:5,
 			state:false	
+			
 			},{
+			led:null,
 			pin:6,
 			state:false
+			
 			},{
+			led:null,				
 			pin:7,
 			state:false
+			
 			},{
+			led:null,
 			pin:8,
 			state:false
 	    	}
@@ -82,6 +100,10 @@ var relay=[
 board.on("boardReady",function(){
 	boardReady=true;
 	console.log("Arduino esta listo");
-	led= new five.Pin(7);
+		
+	//inicializar los pines del relay/led
+	for(var pos=0;pos<relay.length;pos++)	
+		relay[pos].led = new five.Pin(relay[pos].pin);
+
 	toggle=true;
 });
