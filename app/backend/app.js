@@ -35,7 +35,7 @@ app.get("/",function(req,res){
 	app.get("/led/:id",function(req,res){
 
 		//console.log("led "+req.param("id")+" "+req.param("state"));
-		var str=" led "+req.param("id")+" is "+req.query.state;
+		var str=" led "+req.params.id+" is "+req.query.state;
 		console.log(str);		
 
 		 res.writeHead(200, {"Content-Type": "application/json"});
@@ -49,12 +49,17 @@ app.get("/",function(req,res){
 		if(boardReady){
 
 			try{
-				var pos=Number(req.param("id"));
+				var pos=Number(req.params.id);
 				//mandar apagado o encendido
 				if(req.query.state=="on")
-					relay[pos].write(0x01);				
+					relay[pos].led.low();
+					//relay[pos].led.write(0x00);
 				else
-					relay[pos].write(0x00);
+					relay[pos].led.high();
+					//relay[pos].led.write(0x01);				
+
+
+				console.log("sending to arduino");
 			}catch(err){
 				console.log(err);
 			}			
@@ -66,44 +71,47 @@ app.get("/",function(req,res){
 
 
 
-app.listen(3000);
+
 
 
 
 //Arduino
 var boardReady=false;
-var toggle;
 var relay=[
 			{
 			led:null,
-			pin:5,
+			pin:9,
 			state:false	
 			
 			},{
 			led:null,
-			pin:6,
+			pin:10,
 			state:false
 			
 			},{
 			led:null,				
-			pin:7,
+			pin:11,
 			state:false
 			
 			},{
 			led:null,
-			pin:8,
+			pin:12,
 			state:false
 	    	}
 		 ];
 
 
-board.on("boardReady",function(){
+board.on("ready",function(){
 	boardReady=true;
 	console.log("Arduino esta listo");
 		
 	//inicializar los pines del relay/led
 	for(var pos=0;pos<relay.length;pos++)	
 		relay[pos].led = new five.Pin(relay[pos].pin);
-
-	toggle=true;
+	
 });
+
+
+
+
+app.listen(3000);
