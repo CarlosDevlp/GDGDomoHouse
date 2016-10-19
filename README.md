@@ -18,3 +18,7 @@
 </ul> 
 <br/>
 <img src="https://raw.githubusercontent.com/CarlosDevlp/GDGDomoHouse/master/guia/diagrama_relay_arduino.png" />
+
+
+<h3>Por el lado del cliente, tendremos nuestro webapp que controlará nuestro dispositivo</h3>
+<img src="https://raw.githubusercontent.com/CarlosDevlp/GDGDomoHouse/master/guia/mock.png" />
