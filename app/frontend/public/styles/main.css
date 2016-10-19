@@ -71,7 +71,10 @@ body {
       width: 100%;
 
   }
-
+/*.card-container{
+  background-image: url('images/wallpaper.jpg');
+  background-size: cover;  
+}*/
 @media screen and (min-width: 768px) {
   .container {
     max-width: 730px;
@@ -112,7 +115,8 @@ body {
 
   .card-device{
       width: 300px; 
-      height: 250px; 
+      /*height: 250px;*/
+      max-height:350px;
       padding: 0px;
   }
 
@@ -123,6 +127,7 @@ body {
       height: 200px;
   }
 }
+
 
 /*fab button*/
 .add-task.md-fab.md-fab-bottom-right.right{
@@ -169,15 +174,27 @@ div.main md-content md-tabs md-tabs-wrapper md-pagination-wrapper{
 
 /*prealoading page conf*/
 div.preloader{
-  display: initial;
+  
+  
   position: absolute;
   top: 0px;
   left: 0px;  
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
+  
+  
+  /*background-repeat: no-repeat;
   background-position: center;
-  background-image: url('../images/loader.gif') !important;
+  background-image: url('../images/loader.gif') !important;*/
+}
+
+.progress{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
 }
 
 div.main,div.resources{  
@@ -185,6 +202,10 @@ div.main,div.resources{
 }
 body > div.show{
   display: initial;
+}
+
+div.resources .md-fab{
+  color:white;
 }
 
 /*phone version features*/

@@ -15,12 +15,16 @@
     <link rel="stylesheet" type="text/css" href="angular-material/angular-material.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="DomoHouse" ng-controller="MainCtrl">    
+  <body ng-app="DomoHouse" 
+        ng-controller="MainCtrl">    
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
   <!-- preloader -->
-  <div class="preloader" ng-hide="preloader.hidden">
+  <div class="preloader" ng-hide="preloader.hidden" layout="row" layout-sm="column" layout-align="center center"> 
+    <div class="progress">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>    
+    </div>
   </div>
   <!-- toolbar -->
   <div class="main" ng-class="{show:preloader.hidden}" layout="column" 
@@ -46,10 +50,11 @@
               <md-content class="md-padding card-container" >
 
                   <!--<md-subheader class="md-primary">Hay {{ toDoList.tasks.length }} tareas para realizar</md-subheader>-->
+
+                  <!--card template-->
                   <md-card ng-repeat="device in devices track by $index" class="card-device">
 
                       <md-card-content>
-                        <!--<h2 class="md-title">{{task.name}}</h2>-->
   	                      <img src="{{device.img}}" />
 
                       </md-card-content>
@@ -62,7 +67,8 @@
       			          </md-card-title>
 
                       <md-card-actions layout="row" layout-align="end center">
-        			           <md-button class="md-primary">Encender</md-button>
+        			           <md-button class="md-primary" ng-click="sendCommandToDevice($index,'on')">Encender</md-button>
+                         <md-button class="md-primary" ng-click="sendCommandToDevice($index,'off')">Apagar</md-button>
         			        </md-card-actions>
                    
                   </md-card>
@@ -75,37 +81,27 @@
 
 
 
-
+  <!--otros componentes importantes-->
   <div class="resources" ng-class="{show:preloader.hidden}">
-      <!-- FAB button -->
-     <md-button class="add-task md-fab md-fab-bottom-right right" aria-label="Add task"
-      ng-click="taskMaker()"
-     >
+    
+      <!-- Floating FAB button -->
+      <md-button class="add-task md-fab md-fab-bottom-right right" aria-label="Add device"
+         ng-click="openDeviceMakerForm()">
           +        
-    </md-button>
+      </md-button>
 
     <!-- side nav -->
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2"     
-                 md-component-id="options" md-swipe-left="optionsSideNav.close()">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="options" 
+                md-swipe-left="optionsSideNav.close()">
         <md-toolbar class="md-theme-light">
           <h1 class="md-toolbar-tools">Opciones</h1>
         </md-toolbar>
-        <md-content  layout-padding>
-          <h2 class="md-title">Para todas las tareas:</h2>
-          <md-button class="md-primary md-raised btn-accept" ng-click="optionsSideNav.selectAll()">
-               Seleccionar todas
-          </md-button>
-          <md-button class="md-primary md-raised btn-accept" ng-click="optionsSideNav.deselectAll()">
-               Deseleccionar todas
-          </md-button>        
-
-          <h2 class="md-title">Para las tareas seleccionadas:</h2>
-          <md-button class="md-primary md-raised btn-accept"
-            ng-click="optionsSideNav.deleteSelectedTasks()">
-               Eliminar tareas hechas
-          </md-button>
+        <md-content  layout-padding>          
+          <md-button class="md-primary" ng-click="optionsSideNav.refresh()">Actualizar</md-button>          
         </md-content>
     </md-sidenav>
+
+
   </div>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -122,8 +118,8 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>        
-        <script src="scripts/controllers/taskmaker.js"></script>
-        <script src="scripts/controllers/taskeditor.js"></script>
+        <script src="scripts/controllers/devicemaker.js"></script>
+        <!--<script src="scripts/controllers/taskeditor.js"></script>-->
 
         <!-- endbuild -->
 </body>

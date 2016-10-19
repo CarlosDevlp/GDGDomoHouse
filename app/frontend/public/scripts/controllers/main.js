@@ -35,87 +35,51 @@ angular.module('DomoHouse')
             },wait); 
 
        },
-       selectAll:function(){
-            for(var i in $scope.toDoList.tasks)
-               $scope.toDoList.tasks[i].done=true;
-       },
-       deselectAll:function(){
-            for(var i in $scope.toDoList.tasks)
-               $scope.toDoList.tasks[i].done=false;
-       },
-       deleteSelectedTasks:function(){
-            
-            for(var i=0;i<$scope.toDoList.tasks.length;i++)
-              if($scope.toDoList.tasks[i].done){
-                $scope.toDoList.doneTasks.push($scope.toDoList.tasks[i]);
-                $scope.toDoList.tasks.splice(i,1);
-                i--;
-              }
-              
-                
-            
-
-            $mdToast.show(
-              $mdToast.simple()
-                .content("Se han eliminado todas las tareas seleccionadas")                
-                .hideDelay(3000)
-            );
-
+       refresh:function(){
+            window.location.reload(); 
        }
      };
 
      
-     /*componente formulario de creación de tareas*/
-     $scope.taskMaker = function($event){
+     /*componente formulario de creación de dispositivoss*/
+     $scope.openDeviceMakerForm = function($event){
           $mdDialog.show({  
             targetEvent: $event,
-            templateUrl:"views/taskForm.html",
-            controller: "TaskmakerCtrl"
+            templateUrl:"views/deviceForm.html",
+            controller: "DeviceMakerCtrl"
           }).then(function(resp){//promises//succes
-              $scope.toDoList.tasks.unshift(resp); 
-              
+              //$scope.toDoList.tasks.unshift(resp); 
+              $scope.devices.push(resp);
 
               $mdToast.show(
                 $mdToast.simple()
-                .content("Se creó una nueva tarea")                
+                .content("Nuevo dispositivo agregado")
                 .hideDelay(3000)
               );
           },function(){});
      };
 
-     $scope.taskEditor = function(index,$event){          
-          $mdDialog.show({  
-            targetEvent: $event,
-            templateUrl:"views/taskForm.html",
-            controller: "TaskeditorCtrl",
-            locals:{task:$scope.toDoList.tasks[index]}
-          }).then(function(resp){//promises//succes
-              $scope.toDoList.tasks[index]=resp; 
-              
-
-              $mdToast.show(
-              $mdToast.simple()
-                .content("Se editó la información de la tarea")                
-                .hideDelay(2000)
-              );
-
-          },function(){});
+     $scope.sendCommandToDevice=function(index,command){
+          
+          $http({
+              method:"GET",
+              url:"/led/"+index,
+              params:{state:command}
+          }).then(function (response) { //success
+              console.log(response);            
+          }, function (response) { //error
+          });
      };
 
-
-     /*cards de tareas*/
-     $scope.toDoList={
-         				  tasks:[],
-    		     	    doneTasks:[]
-     			  };
-
-
+    
+     /*lista de dispositivos*/
     $scope.devices=[{name:"Foco dormitorio",img:"images/room.jpg"},
                     {name:"Foco del comedor",img:"images/dinnerroom.jpg"},
                     {name:"Foco de la cocina",img:"images/kitchen.jpg"},
                     {name:"Foco del baño",img:"images/bathroom.jpg"}];
 
     
+  //Preloader
   /*init*/
     
     /*init with delay*/
@@ -123,6 +87,6 @@ angular.module('DomoHouse')
                 $scope.preloader.hidden=true;
                 $timeout.cancel(timer);
 
-    },500); 
+    },500 ); 
 
   });

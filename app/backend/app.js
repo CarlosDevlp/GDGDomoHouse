@@ -36,8 +36,13 @@ app.get("/",function(req,res){
 
 		//console.log("led "+req.param("id")+" "+req.param("state"));
 		var str=" led "+req.param("id")+" is "+req.query.state;
-		console.log(str);
-		res.write(str);
+		console.log(str);		
+
+		 res.writeHead(200, {"Content-Type": "application/json"});
+		 var json = JSON.stringify({ 
+		    message:"ok"
+		 });
+		 res.end(json);
 		/*if(boardReady){
 			if(toggle)
 				led.write(0x01);
