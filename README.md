@@ -4,7 +4,26 @@
 
     
 
-<center>DomoHouse es el cliente-servidor para controlar los dispositivos electrónicos conectados al servidor, haciendo una introducción a lo que seria el amplio mundo del internet de las cosas</center>
+<center>DomoHouse es el cliente-servidor para controlar los dispositivos electrónicos conectados al servidor, haciendo una introducción a lo que seria el amplio mundo del internet de las cosas.</center>
+
+<br/>
+<h3>Domo House está hecho con las siguientes ténologías y módulos</h3>
+<h4>Backend</h4>
+<ul>
+  <li>NodeJS</li>
+  <li>Johnny-Five</li>
+  <li>Express</li>
+</ul> 
+<h4>Frontend</h4>
+<ul>
+  <li>AngularJS 1.5 </li>
+  <li>Angular-Material</li>
+</ul> 
+
+<h4>Hardware-Arduino</h4>
+<ul>
+  <li>Arduno-IDE </li>  
+</ul>
 
 <br/>
 
