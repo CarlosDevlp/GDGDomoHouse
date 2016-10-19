@@ -1,6 +1,8 @@
 <h1>GDG Domo-House</h1>
 <br/>
-<b>Desarrollador:</b> Carlos Chavez Laguna. <br/>
+<b>Desarrollador:</b> Carlos Chavez Laguna.<br/>
+
+    
 
 <center>DomoHouse es el cliente-servidor para controlar los dispositivos electrónicos conectados al servidor, haciendo una introducción a lo que seria el amplio mundo del internet de las cosas</center>
 
@@ -22,3 +24,10 @@
 
 <h3>Por el lado del cliente, tendremos nuestro webapp que controlará nuestro dispositivo</h3>
 <img src="https://raw.githubusercontent.com/CarlosDevlp/GDGDomoHouse/master/guia/mock.png" />
+
+<br/>
+<p>
+  Para cualquier consulta o detalle:<br/>
+  twitter:@CarlosPlusPlus1 <br/>
+  correo: carloscl94r@gmail.com <br/>  
+</p>
