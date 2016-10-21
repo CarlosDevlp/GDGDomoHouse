@@ -14,6 +14,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "jade": "^1.11.0",
-    "johnny-five": "^0.10.3"
+    "johnny-five": "^0.10.3",
+    "serialport": "^4.0.3"
   }
 }

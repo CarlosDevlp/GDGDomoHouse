@@ -3,13 +3,10 @@ var app=express();
 var five= require("johnny-five");
 var path= require("path");
 var board= new five.Board();
-//var fs=require("fs");
-
 
 app.use(express.static("../../bower_components"));
 app.use(express.static("../frontend/public"));
 
-//app.use(express.static(path.join(__dirname + "/../frontend", 'public')));
 
 
 //middleware
@@ -31,11 +28,11 @@ app.get("/",function(req,res){
 
 
 
-//for(var pos=0;pos<relay.length;pos++)
+
 	app.get("/led/:id",function(req,res){
 
 		//console.log("led "+req.param("id")+" "+req.param("state"));
-		var str=" led "+req.params.id+" is "+req.query.state;
+		var str=" led "+req.params.id+" is "+req.query.command;
 		console.log(str);		
 
 		 res.writeHead(200, {"Content-Type": "application/json"});
@@ -51,7 +48,7 @@ app.get("/",function(req,res){
 			try{
 				var pos=Number(req.params.id);
 				//mandar apagado o encendido
-				if(req.query.state=="on")
+				if(req.query.command=="on")
 					relay[pos].led.low();
 					//relay[pos].led.write(0x00);
 				else
@@ -80,22 +77,22 @@ var boardReady=false;
 var relay=[
 			{
 			led:null,
-			pin:9,
+			pin:2,
 			state:false	
 			
 			},{
 			led:null,
-			pin:10,
+			pin:3,
 			state:false
 			
 			},{
 			led:null,				
-			pin:11,
+			pin:4,
 			state:false
 			
 			},{
 			led:null,
-			pin:12,
+			pin:5,
 			state:false
 	    	}
 		 ];

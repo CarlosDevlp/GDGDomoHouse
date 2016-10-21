@@ -13,7 +13,8 @@ angular
     'ngMaterial',
     'ngAnimate',
     'ngAria',            
-    'ngTouch'
+    'ngTouch',
+    'ngRoute'
   ])
   .config(function ($mdThemingProvider) {
  

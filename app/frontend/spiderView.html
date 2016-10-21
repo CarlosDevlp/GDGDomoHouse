@@ -49,6 +49,8 @@
             
               <md-content class="md-padding card-container" >
 
+                  <!--<md-subheader class="md-primary">Hay {{ toDoList.tasks.length }} tareas para realizar</md-subheader>-->
+
                   <!--card template-->
                   <md-card ng-repeat="device in devices track by $index" class="card-device">
 
@@ -65,16 +67,8 @@
       			          </md-card-title>
 
                       <md-card-actions layout="row" layout-align="end center">
-
-                        <!--controles para domo house-->
-        			           <md-button ng-hide="path=='spider'" class="md-primary" ng-click="sendCommandToDevice($index,'on')">Encender</md-button>
-                         <md-button ng-hide="path=='spider'" class="md-primary" ng-click="sendCommandToDevice($index,'off')">Apagar</md-button>
-
-                        <!--controles para el spider-->
-                         <md-button ng-show="path=='spider'" class="md-primary" ng-click="sendCommandToDevice('none','f')">Adelante</md-button>
-                         <md-button ng-show="path=='spider'" class="md-primary" ng-click="sendCommandToDevice('none','b')">Atrás</md-button>
-                         <md-button ng-show="path=='spider'" class="md-primary" ng-click="sendCommandToDevice('none','s')">Detener</md-button>
-
+        			           <md-button class="md-primary" ng-click="sendCommandToDevice($index,'on')">Encender</md-button>
+                         <md-button class="md-primary" ng-click="sendCommandToDevice($index,'off')">Apagar</md-button>
         			        </md-card-actions>
                    
                   </md-card>
@@ -117,7 +111,6 @@
     <script src="angular-aria/angular-aria.js"></script>
     <script src="angular-touch/angular-touch.js"></script>
     <script src="angular-material/angular-material.js"></script>
-    <script src="angular-route/angular-route.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -126,6 +119,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>        
         <script src="scripts/controllers/devicemaker.js"></script>
+        <!--<script src="scripts/controllers/taskeditor.js"></script>-->
 
         <!-- endbuild -->
 </body>

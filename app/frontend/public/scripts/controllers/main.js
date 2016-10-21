@@ -8,9 +8,13 @@
  * Controller of the todoListApp
  */
  var p;
+ var path;
 angular.module('DomoHouse')
-  .controller('MainCtrl', function ($scope,$mdSidenav,$timeout,$mdDialog,$http,$mdToast) {
-    p=$mdDialog;
+  .controller('MainCtrl', function ($scope,$mdSidenav,$timeout,$mdDialog,$http,$mdToast,$location) {
+    p=$mdDialog;    
+    $scope.path=$location.absUrl().split("/")[3]||"Unknown";
+
+
   /*declaration*/      
      /*componente preloader*/
      $scope.preloader={
@@ -59,25 +63,37 @@ angular.module('DomoHouse')
           },function(){});
      };
 
-     $scope.sendCommandToDevice=function(index,command){
-          
+     $scope.sendCommandToDevice=function(index,cmd){
+          //var index=index || null;
+
           $http({
               method:"GET",
-              url:"/led/"+index,
-              params:{state:command}
+              url:(index!='none'?  "/led/"+index : "/spider/control"),
+              params:{command:cmd}
           }).then(function (response) { //success
               console.log(response);            
           }, function (response) { //error
           });
      };
 
+
+
     
      /*lista de dispositivos*/
-    $scope.devices=[{name:"Foco dormitorio",img:"images/room.jpg"},
-                    {name:"Foco del comedor",img:"images/dinnerroom.jpg"},
-                    {name:"Foco de la cocina",img:"images/kitchen.jpg"},
-                    {name:"Foco del baño",img:"images/bathroom.jpg"}];
 
+     /*domo house*/
+
+     if($scope.path!="spider")
+
+     
+      $scope.devices=[{name:"Foco del dormitorio",img:"images/room.jpg"},
+                      {name:"Foco del comedor",img:"images/dinnerroom.jpg"},
+                      {name:"Foco de la cocina",img:"images/kitchen.jpg"},
+                      {name:"Foco del baño",img:"images/bathroom.jpg"}];
+      else
+    /*spider*/
+      $scope.devices=[{name:"Arduino Robot Spider",img:"images/spider.jpg"}];
+      //$scope.devices
     
   //Preloader
   /*init*/
