@@ -45,6 +45,13 @@
 <img src="https://raw.githubusercontent.com/CarlosDevlp/GDGDomoHouse/master/guia/mock.png" />
 
 <br/>
+<h4>Guias para entender más de johnny five y serial port</h4>
+<a href="https://docs.google.com/document/d/1nwe1Bsl-Ikoqbs-fdbQYpyqSeVLv8ljs2a9tuVf4gxQ/edit?usp=sharing">Guía para usar módulo Bluetooth con NodeJS</a>
+<a href="https://docs.google.com/document/d/1jZxpvfF0sJMoe6UJ7NQVqmTaRy6i3RHhISDs6Aa-rPQ/edit?usp=sharing">Guía para usar Arduino con Johnny-Five NodeJS</a>
+<br/>
+<h4>Extras ppts</h4>
+https://docs.google.com/presentation/d/1gP1aZIW4puFvH5gM8YaEYngHXdoo66Ti3J23MG-Kkhc/edit?usp=sharing
+https://docs.google.com/presentation/d/10f0uw-iK4Op7gCfjR6OBChyKpHPRbvpVLwrxcLwR0V4/edit?usp=sharing
 <p>
   Para cualquier consulta o detalle:<br/>
   twitter:@CarlosPlusPlus1 <br/>
