@@ -46,7 +46,7 @@
 
 <br/>
 <h4>Guias para entender más de johnny five y serial port</h4>
-<a href="https://docs.google.com/document/d/1nwe1Bsl-Ikoqbs-fdbQYpyqSeVLv8ljs2a9tuVf4gxQ/edit?usp=sharing">Guía para usar módulo Bluetooth con NodeJS</a>
+<a href="https://docs.google.com/document/d/1nwe1Bsl-Ikoqbs-fdbQYpyqSeVLv8ljs2a9tuVf4gxQ/edit?usp=sharing">Guía para usar módulo Bluetooth con NodeJS</a> <br/>
 <a href="https://docs.google.com/document/d/1jZxpvfF0sJMoe6UJ7NQVqmTaRy6i3RHhISDs6Aa-rPQ/edit?usp=sharing">Guía para usar Arduino con Johnny-Five NodeJS</a>
 <br/>
 <h4>Extras ppts</h4>
