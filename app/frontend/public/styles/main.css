@@ -71,6 +71,10 @@ body {
       width: 100%;
 
   }
+
+md-card:last-child{
+    margin-bottom: 200px;
+  }
 /*.card-container{
   background-image: url('images/wallpaper.jpg');
   background-size: cover;  
