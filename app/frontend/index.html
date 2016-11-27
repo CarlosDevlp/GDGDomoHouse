@@ -67,8 +67,9 @@
                       <md-card-actions layout="row" layout-align="end center">
 
                         <!--controles para domo house-->
-        			           <md-button ng-hide="path=='spider'" class="md-primary" ng-click="sendCommandToDevice($index,'on')">Encender</md-button>
-                         <md-button ng-hide="path=='spider'" class="md-primary" ng-click="sendCommandToDevice($index,'off')">Apagar</md-button>
+        			           <md-button ng-hide="path=='spider'" class="md-primary" ng-click="sendCommandToDevice($index,device.state)">{{ device.state? "Apagar":"Encender"}}</md-button>
+
+
 
                         <!--controles para el spider-->
                          <md-button ng-show="path=='spider'" class="md-primary" ng-click="sendCommandToDevice('none','f')">Adelante</md-button>
@@ -118,6 +119,7 @@
     <script src="angular-touch/angular-touch.js"></script>
     <script src="angular-material/angular-material.js"></script>
     <script src="angular-route/angular-route.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

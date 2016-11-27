@@ -1,8 +1,11 @@
 var express=require("express");
 var app=express();
+var server = require('http').Server(app);
 var five= require("johnny-five");
 var path= require("path");
 var board= new five.Board();
+var io=require("socket.io")(server);
+
 
 app.use(express.static("../../bower_components"));
 app.use(express.static("../frontend/public"));
@@ -13,7 +16,27 @@ app.use(express.static("../frontend/public"));
 app.set("view engine","jade");
 app.set('views', __dirname + "/../frontend");
 
+//conexion y código de socket
+io.on('connection', function (socket) {	
+	console.log("nueva conexion en socket");
+	socket.emit('leds', { "devices": devices});
 
+	socket.on('led', function (data) {
+		var pos=data.index;
+		var state=data.state;
+		devices[pos].state=data.state;
+		
+		if(devices[pos].state)				
+			relay[pos].led.high();
+		else 	
+			relay[pos].led.low();
+		//reenviar a todos los sockets
+		io.sockets.emit('led', data);
+
+		console.log("sending to arduino");
+
+	});
+});
 
 
 
@@ -48,7 +71,7 @@ app.get("/",function(req,res){
 			try{
 				var pos=Number(req.params.id);
 				//mandar apagado o encendido
-				if(req.query.command=="on")
+				if(req.query.command!="on")
 					relay[pos].led.low();
 					//relay[pos].led.write(0x00);
 				else
@@ -59,7 +82,7 @@ app.get("/",function(req,res){
 				console.log("sending to arduino");
 			}catch(err){
 				console.log(err);
-			}			
+			}
 		}
 
 		
@@ -74,27 +97,32 @@ app.get("/",function(req,res){
 
 //Arduino
 var boardReady=false;
+var devices=[
+			{
+			state:false				
+			},{
+			state:false			
+			},{
+			state:false			
+			},{
+			state:false
+	    	}
+		 ];
+
 var relay=[
 			{
 			led:null,
-			pin:2,
-			state:false	
-			
+			pin:2			
 			},{
 			led:null,
 			pin:3,
-			state:false
-			
 			},{
 			led:null,				
 			pin:4,
-			state:false
-			
 			},{
 			led:null,
 			pin:5,
-			state:false
-	    	}
+			}
 		 ];
 
 
@@ -111,4 +139,4 @@ board.on("ready",function(){
 
 
 
-app.listen(3000);
+server.listen(3000);
