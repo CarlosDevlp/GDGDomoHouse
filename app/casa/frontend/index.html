@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DomoHouse</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:ng-hide="preloader.hidden"css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" type="text/css" href="angular-material/angular-material.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="DomoHouse" 
+        ng-controller="MainCtrl">    
+
+  <!-- preloader -->
+  <div class="preloader" ng-hide="preloader.hidden" layout="row" layout-sm="column" layout-align="center center"> 
+    <div class="progress">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>    
+    </div>
+  </div>
+
+  <!-- toolbar -->
+  <div class="main" ng-class="{show:preloader.hidden}" layout="column" 
+       flex layout-fill ng-cloak>    
+      <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Settings"
+            ng-click="optionsSideNav.toggle()">
+            <md-icon md-svg-icon="images/menu.svg"></md-icon>
+          </md-button>
+
+          <h2>
+            <span>GDG Domo-House: {{houseName}} </span>
+          </h2>       
+
+        </div>
+      </md-toolbar>
+    
+
+    <!--contenido-->    
+      <md-content flex layout-padding >        
+            
+              <md-content class="md-padding card-container" >
+
+                  <!--card template-->
+                  <md-card ng-repeat="device in devices track by $index" class="card-device">
+
+                      <md-card-content>
+  	                      <img src="{{device.img}}" />
+
+                      </md-card-content>
+                     	
+                     	<md-card-title>
+        			          <md-card-title-text>
+        			            <span class="md-headline" md-colors="{color:'primary'}">{{device.name}}</span>
+        			          </md-card-title-text>			          
+      			          </md-card-title>
+
+                      <md-card-actions layout="row" layout-align="end center">
+                        
+        			           <md-button class="md-primary" ng-click="sendCommandToDevice($index,device.state)">{{ device.state? "Apagar":"Encender"}}</md-button>
+
+        			        </md-card-actions>
+                   
+                  </md-card>
+
+              </md-content>
+           
+           
+      </md-content>    
+  </div>
+
+
+
+  <!--otros componentes importantes-->
+  <div class="resources" ng-class="{show:preloader.hidden}">
+    
+      <!-- Floating FAB button -->
+      <md-button class="add-task md-fab md-fab-bottom-right right" aria-label="Add device"
+         ng-click="openDeviceMakerForm()">
+          +        
+      </md-button>
+
+    <!-- side nav -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="options" 
+                md-swipe-left="optionsSideNav.close()">
+        <md-toolbar class="md-theme-light">
+          <h1 class="md-toolbar-tools">Opciones</h1>
+        </md-toolbar>
+        <md-content  layout-padding>          
+          <md-button class="md-primary" ng-click="optionsSideNav.refresh()">Actualizar</md-button>          
+        </md-content>
+    </md-sidenav>
+
+
+  </div>
+
+  <!--importar scripts-->
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="angular/angular.js"></script>
+    <script src="angular-animate/angular-animate.js"></script>
+    <script src="angular-aria/angular-aria.js"></script>
+    <script src="angular-touch/angular-touch.js"></script>
+    <script src="angular-material/angular-material.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>        
+        <script src="scripts/controllers/devicemaker.js"></script>
+
+        <!-- endbuild -->
+</body>
+</html>

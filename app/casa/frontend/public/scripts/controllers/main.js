@@ -7,14 +7,12 @@
  * # MainCtrl
  * Controller of the todoListApp
  */
- var p;
- var path;
- var socket = io.connect('http://192.168.2.7:3000/');
-angular.module('DomoHouse')
-  .controller('MainCtrl', function ($scope,$mdSidenav,$timeout,$mdDialog,$http,$mdToast,$location) {
-    p=$mdDialog;    
-    $scope.path=$location.absUrl().split("/")[3]||"Unknown";
 
+angular.module('DomoHouse')
+  .controller('MainCtrl', function ($scope,$mdSidenav,$timeout,$mdDialog,$http,$mdToast,$location,netConfig,houseName) {
+    
+    $scope.socket= io.connect('http://'+netConfig.ip+':'+netConfig.port);
+    $scope.houseName=houseName;
 
   /*declaration*/      
      /*componente preloader*/
@@ -53,7 +51,6 @@ angular.module('DomoHouse')
             templateUrl:"views/deviceForm.html",
             controller: "DeviceMakerCtrl"
           }).then(function(resp){//promises//succes
-              //$scope.toDoList.tasks.unshift(resp); 
               $scope.devices.push(resp);
 
               $mdToast.show(
@@ -64,33 +61,22 @@ angular.module('DomoHouse')
           },function(){});
      };
 
+    //enviar comando al dispositivo arduino
      $scope.sendCommandToDevice=function(index,cmd){
-          //var index=index || null;
-
           $scope.devices[index].state=!cmd;
-          socket.emit('led', { 'index':index, 'state': !cmd});
-
-        /*
-          return;
-
-          $http({
-              method:"GET",
-              url:(index!='none'?  "/led/"+index : "/spider/control"),
-              params:{command:cmd}
-          }).then(function (response) { //success
-              console.log(response);            
-          }, function (response) { //error
-          });*/
+          $scope.socket.emit('led', { 'index':index, 'state': !cmd});
      };
 
-    socket.on('led', function (data) {
+
+    // 
+    $scope.socket.on('led', function (data) {
           console.log(data);
           $scope.devices[data.index].state=data.state;            
     });
 
 
     //socket io escuchando al backend de algún cambio
-    socket.on('leds', function (data) {
+    $scope.socket.on('leds', function (data) {
             console.log(data);
               for(var pos in data.devices)
                   $scope.devices[pos].state= data.devices[pos].state;
@@ -101,19 +87,15 @@ angular.module('DomoHouse')
      /*lista de dispositivos*/
 
      /*domo house*/
-
-     if($scope.path!="spider")
-
      
       $scope.devices=[{name:"Foco del dormitorio",img:"images/room.jpg",state:false},
                       {name:"Foco del comedor",img:"images/dinnerroom.jpg",state:false},
                       {name:"Foco de la cocina",img:"images/kitchen.jpg",state:false},
                       {name:"Foco del baño",img:"images/bathroom.jpg",state:false}];
-      else
-    /*spider*/
-      $scope.devices=[{name:"Arduino Robot Spider",img:"images/spider.jpg"}];
-      //$scope.devices
-    
+     
+
+
+
   //Preloader
   /*init*/
     

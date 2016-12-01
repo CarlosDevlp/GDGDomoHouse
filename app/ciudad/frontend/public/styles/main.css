@@ -1,0 +1,236 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;  
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+.card-device  md-card-content{
+    padding: 0px;
+  }
+
+.card-device img{
+      width: 100%;
+
+  }
+
+md-card:last-child{
+    margin-bottom: 200px;
+  }
+/*.card-container{
+  background-image: url('images/wallpaper.jpg');
+  background-size: cover;  
+}*/
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+
+  .card-container{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        -webkit-flex-flow: row wrap;
+        justify-content: space-around;
+
+         flex-wrap: wrap ;
+  }
+
+  .card-device{
+      width: 300px; 
+      /*height: 250px;*/
+      max-height:350px;
+      padding: 0px;
+  }
+
+  
+
+  .card-device img{
+      width: 300px;
+      height: 200px;
+  }
+}
+
+
+/*fab button*/
+.add-task.md-fab.md-fab-bottom-right.right{
+  font-size: 2em;  
+  position: fixed;
+}
+/*title of dialog*/
+md-dialog md-dialog-content md-content h2, md-sidenav md-content h2{
+  color:rgb(33,150,243);
+  text-align: center;
+}
+
+/*to the sidenav options*/
+md-sidenav md-content button{
+  width: 90%;
+}
+
+md-tabs md-content md-card:last-child{  
+  margin-bottom: 30%;
+}
+
+/*Scrolling*/
+div.main, div.main md-content, div.main md-content md-tabs, div.main md-content md-tabs md-tabs-content-wrapper,
+div.main md-content md-tabs md-tabs-content-wrapper md-tab-content, div.main md-content md-tabs md-tabs-content-wrapper md-tab-content > div{
+  height:100%;
+}
+div.main md-content md-tabs md-tabs-content-wrapper md-tab-content div md-content{
+  height:75%;
+  /*border: 2px solid red;  */
+}
+div.main md-content md-tabs md-content div.md-subheader-wrapper{
+  width:90%;  
+}
+div.main md-content md-tabs md-content{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+div.main md-content md-tabs md-tabs-wrapper md-pagination-wrapper md-tab-item{
+    width: 50%
+}
+div.main md-content md-tabs md-tabs-wrapper md-pagination-wrapper{
+    width:100%;
+}
+
+/*prealoading page conf*/
+div.preloader{
+  
+  
+  position: absolute;
+  top: 0px;
+  left: 0px;  
+  width: 100%;
+  height: 100%;
+  
+  
+  /*background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../images/loader.gif') !important;*/
+}
+
+.progress{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+div.main,div.resources{  
+  display: none;
+}
+body > div.show{
+  display: initial;
+}
+
+div.resources .md-fab{
+  color:white;
+}
+
+/*phone version features*/
+@media screen and (max-width: 400px){
+  div.resources md-sidenav{
+    min-width: 80%;
+    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 400px){
+  md-dialog{
+      width: 30%;
+  }
+  md-dialog md-dialog-content,md-dialog > div {
+    width: 85%;
+  }
+  md-dialog button:first-child{
+      float:left;  
+  }
+  md-dialog button:last-child{
+      float:right;  
+  }
+}
